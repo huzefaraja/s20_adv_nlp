@@ -1,8 +1,8 @@
 # from nltk.corpus import reuters
-#
-#
-# import spacy
-# nlp = spacy.load("en")
+
+
+import spacy
+nlp = spacy.load("en")
 
 class Entity:
     def __init__(self):
