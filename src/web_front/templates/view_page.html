@@ -1,73 +1,93 @@
 {% extends "base.html" %}
-{% block content %}<dl class="row">
-  <dt class="col-sm-3">ID</dt>
-    <dd class="col-sm-9">{{doc.id }}</dd>
+{% block content %}
+    <dl class="row">
+        <dt class="col-sm-3">ID</dt>
+        <dd class="col-sm-9">{{ doc.id }}</dd>
 
-    <dt class="col-sm-3">Doc ID</dt>
-    <dd class="col-sm-9">{{doc.doc_id }}</dd>
+        <dt class="col-sm-3">Doc ID</dt>
+        <dd class="col-sm-9">{{ doc.doc_id }}</dd>
 
-    <dt class="col-sm-3">Categories</dt>
-    <dd class="col-sm-9">{{doc.categories }}</dd>
+        <dt class="col-sm-3">Categories</dt>
+        <dd class="col-sm-9">{{ doc.categories }}</dd>
 
-</dl>
+    </dl>
 
 
-<h2>Text Content</h2>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="card card-body bg-light" style="white-space: pre;" id="doc" onmouseup="getSelectedWordIndex()">{{ doc.body }}</div>
+    <h2>Text Content</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="card card-body bg-light" style="white-space: pre;" id="doc"
+                     onmouseup="getSelectedWordIndex()">{{ doc.body }}</div>
 
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form action="seed_sentence_submit" method="post">
+                            <input type="text" name="sentence" id="sentence" disabled>
+                            <input type="text" name="start_offset" id="start_offset" disabled>
+                            <input type="text" name="end_offset" id="end_offset" disabled>
+                            <input type="text" name="document_id" id="document_id" disabled value="{{ doc.id }}">
+                            <input type="submit">
+                        </form>
+                    </div>
+                    {% if quotes is not none %}
+                        <div class="col-sm-12 mt-3">
+                            <h3>Quotes:</h3>
+                            <div id="quote_content">
+                                {% for speaker in quotes %}
+                                    <h5>{{ speaker }}</h5>
+                                    <ul>
+                                        {% for quote in quotes[speaker] %}
+                                            <li>{{ quote['quote'] }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-sm-4">
-      <form action="seed_sentence_submit" method="post">
-        <input type="text" name="sentence" id="sentence" disabled >
-        <input type="text" name="start_offset" id="start_offset" disabled >
-        <input type="text" name="end_offset" id="end_offset" disabled >
-        <input type="text" name="document_id" id="document_id"  disabled value="{{doc.id }}">
-        <input type="submit">
-
-      </form>
-    </div>
-  </div>
-</div>
 
 
-<script>
-  $( document ).ready(function() {
-    console.log( "ready!" );
-});
+    <script>
+        $(document).ready(function () {
+            console.log("ready!");
+            {#console.log(JSON.parse('{{ quotes | tojson }}'));#}
+        });
 
-function getSelectedWordIndex() {
-    if (window.getSelection) {
-        var sel = window.getSelection();
-        var div = document.getElementById("doc");
+        function getSelectedWordIndex() {
+            if (window.getSelection) {
+                var sel = window.getSelection();
+                var div = document.getElementById("doc");
 
-        if (sel.rangeCount) {
-            // Get the selected range
-            var range = sel.getRangeAt(0);
-            console.log(range);
-            // Check that the selection is wholly contained within the div text
-            if (range.commonAncestorContainer == div.firstChild) {
-                var precedingRange = document.createRange();
-                precedingRange.setStartBefore(div.firstChild);
-                precedingRange.setStart(range.startContainer, range.startOffset);
-                precedingRange.setEnd(range.startContainer, range.endOffset);
+                if (sel.rangeCount) {
+                    // Get the selected range
+                    var range = sel.getRangeAt(0);
+                    console.log(range);
+                    // Check that the selection is wholly contained within the div text
+                    if (range.commonAncestorContainer == div.firstChild) {
+                        var precedingRange = document.createRange();
+                        precedingRange.setStartBefore(div.firstChild);
+                        precedingRange.setStart(range.startContainer, range.startOffset);
+                        precedingRange.setEnd(range.startContainer, range.endOffset);
 
-                //precedingRange.setStartBefore(div.firstChild);
-                //precedingRange.setEnd(range.startContainer, range.startOffset);
-                var textPrecedingSelection = precedingRange.toString();
+                        //precedingRange.setStartBefore(div.firstChild);
+                        //precedingRange.setEnd(range.startContainer, range.startOffset);
+                        var textPrecedingSelection = precedingRange.toString();
 
-                $("#sentence").val(textPrecedingSelection);
-                $("#start_offset").val(range.startOffset);
-                $("#end_offset").val(range.endOffset);
+                        $("#sentence").val(textPrecedingSelection);
+                        $("#start_offset").val(range.startOffset);
+                        $("#end_offset").val(range.endOffset);
+                    }
+                }
             }
         }
-    }
-}
 
+    </script>
 
-</script>
-
-<br>
+    <br>
 {% endblock %}

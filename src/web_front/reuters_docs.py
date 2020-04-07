@@ -1,3 +1,4 @@
+from extractors import quote_extractor
 from flask import Blueprint, render_template, request, redirect, url_for
 from . import db
 from .models import ReutersDoc, SeedSentences
@@ -15,8 +16,8 @@ def reuters_dataset():
 def view_page():
     id = request.args.get('id', default=1, type=int)
     doc = ReutersDoc.query.filter_by(id=id).first()
-
-    return render_template('view_page.html', doc=doc)
+    quotes = quote_extractor.from_doc(doc)
+    return render_template('view_page.html', doc=doc, quotes=quotes)
 
 @reuters_docs.route('/seed_sentence_submit', methods=["POST"])
 def seed_sentence_submit():
