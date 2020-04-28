@@ -1,10 +1,9 @@
 import sqlalchemy as db
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 engine = db.create_engine(
-    #'mysql+mysqlconnector://nlpuser:nlpuserpassword@localhost:3306/gw_nlp?charset=utf8',
+    # 'mysql+mysqlconnector://nlpuser:nlpuserpassword@localhost:3306/gw_nlp?charset=utf8',
     'mysql+pymysql://nlpuser:nlpuserpassword@localhost:3306/gw_nlp?charset=utf8'
     #     echo=True
 )
@@ -12,6 +11,7 @@ connection = engine.connect()
 metadata = db.MetaData()
 
 Base = declarative_base()
+
 
 class ReutersDoc(Base):
     __tablename__ = 'reuters_docs'
@@ -45,6 +45,7 @@ class ReutersEntity(Base):
     end = db.Column(db.Integer)
     name = db.Column(db.String(length=255), index=True)
     type = db.Column(db.String(length=50))
+
 
 Session = sessionmaker(bind=engine)
 session = Session()
