@@ -18,3 +18,5 @@ for fid in reuters.fileids():
         session.rollback()
         print(e)
         print("*" * 25)
+
+print("Finished!")
