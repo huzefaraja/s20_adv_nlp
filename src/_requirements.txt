@@ -25,7 +25,7 @@ decorator==4.4.0
 defusedxml==0.6.0
 dill==0.2.9
 docutils==0.15.2
-elasticsearch==7.0.2
+elasticsearch==7.0.2e
 entrypoints==0.3
 Flask==1.1.2
 Flask-SQLAlchemy==2.4.1
