@@ -1,0 +1,17 @@
+// DAWG
+digraph {
+	START
+	END
+	START -> SPEAKER
+	SPEAKER -> said
+	said -> QUOTE
+	QUOTE -> END
+	START -> QUOTE_
+	QUOTE_ -> said_
+	said_ -> SPEAKER_
+	SPEAKER_ -> END
+	QUOTE_ -> told
+	told -> SPEAKER_
+	QUOTE_ -> added
+	added -> SPEAKER_
+}

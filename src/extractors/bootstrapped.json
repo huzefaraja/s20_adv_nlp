@@ -1,0 +1,86 @@
+[
+  {
+    "prefix": null,
+    "suffix": "said",
+    "readable": [
+      "START",
+      "SPEAKER",
+      "said",
+      "QUOTE",
+      "END"
+    ],
+    "readable_str": "START SPEAKER said QUOTE END"
+  },
+  {
+    "prefix": "announced",
+    "suffix": null,
+    "readable": [
+      "START",
+      "QUOTE",
+      "announced",
+      "SPEAKER",
+      "END"
+    ],
+    "readable_str": "START QUOTE announced SPEAKER END"
+  },
+  {
+    "prefix": "said",
+    "suffix": null,
+    "readable": [
+      "START",
+      "QUOTE",
+      "said",
+      "SPEAKER",
+      "END"
+    ],
+    "readable_str": "START QUOTE said SPEAKER END"
+  },
+  {
+    "prefix": "told",
+    "suffix": null,
+    "readable": [
+      "START",
+      "QUOTE",
+      "told",
+      "SPEAKER",
+      "END"
+    ],
+    "readable_str": "START QUOTE told SPEAKER END"
+  },
+  {
+    "prefix": "added",
+    "suffix": null,
+    "readable": [
+      "START",
+      "QUOTE",
+      "added",
+      "SPEAKER",
+      "END"
+    ],
+    "readable_str": "START QUOTE added SPEAKER END"
+  },
+  {
+    "prefix": "mailed",
+    "suffix": null,
+    "readable": [
+      "START",
+      "QUOTE",
+      "mailed",
+      "SPEAKER",
+      "END"
+    ],
+    "readable_str": "START QUOTE mailed SPEAKER END"
+  },
+  {
+    "prefix": "return",
+    "suffix": null,
+    "readable": [
+      "START",
+      "QUOTE",
+      "return",
+      "SPEAKER",
+      "END"
+    ],
+    "readable_str": "START QUOTE return SPEAKER END"
+  }
+]

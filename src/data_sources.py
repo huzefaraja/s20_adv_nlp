@@ -48,4 +48,3 @@ class ReutersEntity(Base):
 
 
 Session = sessionmaker(bind=engine)
-session = Session()

@@ -6,7 +6,7 @@ import nltk
 import spacy
 from nltk.corpus import reuters
 
-
+session = Session()
 for fid in reuters.fileids():
     doc_body = reuters.raw(fid)
     doc_categories = "; ".join(reuters.categories(fid))
@@ -18,5 +18,5 @@ for fid in reuters.fileids():
         session.rollback()
         print(e)
         print("*" * 25)
-
+session.close()
 print("Finished!")
